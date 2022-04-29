@@ -6,8 +6,6 @@ const port = process.env.PORT || 3000;
 
 const sem = semaphore(1);
 const yuhu = new todo.Manga();
- // yuhu.get();
-// yuhu.startCron();
 
 http.createServer(function(req, res) {
 const url = req.url;
