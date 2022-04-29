@@ -247,8 +247,8 @@ if(j <= 1) {
 		    m.updateConfig(config);
 	    }
 	}, 300000);
+    }
 }
-
 function indexTitle(data, judul){
     for (let index in data){
         if(data[index].title === judul){
