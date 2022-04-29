@@ -2,7 +2,7 @@ const http = require('http');
 const todo = require("./todo.js");
 const config = require("./config.json");
 const semaphore = require('semaphore');
-const port = args['--port'] || process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const sem = semaphore(1);
 const yuhu = new todo.Manga();
@@ -25,6 +25,6 @@ yuhu.updateConfig(config);
         sem.take(function(){yuhu.startCron()});
     }
 res.end(JSON.stringify(config));
-}).listen(3000, ()=> {
+}).listen(port, ()=> {
     console.log("server running. Aceess your domain:3001 to start");
 });
