@@ -1,6 +1,5 @@
 const http = require('http');
 const https = require('https');
-const CronJob = require('cron').CronJob;
 const fs = require('fs');
 const config = require('./config.json');
 const querystring = require('querystring');
@@ -238,18 +237,16 @@ if(j <= 1) {
         }
     }
     startCron(){
-        const m = this;
-        console.log("cron berjalan");
-        const job = new CronJob(config.cron.expressions, function() {
-if(!config.cron.status){
- 	console.log("cron di jalankan kembali. periksa");
-	m.get();
-            config.cron.status = true;
-            m.updateConfig(config);
-        }
-}, null, true, null, null, true);
-        job.start();
-    }
+	const m = this;
+	console.log("cron berjalan");
+	setInterval(function () {
+	    if(!config.cron.status){
+		    console.log("cron di jalankan kembali. periksa");
+		    m.get();
+		    config.cron.status = true;
+		    m.updateConfig(config);
+	    }
+	}, 300000);
 }
 
 function indexTitle(data, judul){
