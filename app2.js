@@ -10,5 +10,4 @@ const sem = semaphore(1);
 const yuhu = new todo.Manga();
  // yuhu.get();
 // yuhu.startCron();
-
 app.listen(port, ()=> console.log(`server running. Aceess your domain:{$port} to start`));
