@@ -2,6 +2,7 @@ const http = require('http');
 const todo = require("./todo.js");
 const config = require("./config.json");
 const semaphore = require('semaphore');
+const port = args['--port'] || process.env.PORT || 3000;
 
 const sem = semaphore(1);
 const yuhu = new todo.Manga();
