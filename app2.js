@@ -7,22 +7,18 @@ const port = process.env.PORT || 3000;
 const sem = semaphore(1);
 const yuhu = new todo.Manga();
 
-http.createServer(function(req, res) {
 const url = req.url;
-    res.writeHead(200, { 'Content-Type' : 'application/json'});
-	
-    if(config.grabber.status === "ready"){
-        config.grabber.status = "running";
-        yuhu.updateConfig(config);
-        yuhu.get();
-    } else if(config.grabber.status === "complete"){
-if(url === "/reset"){
-config.cron.status = false;
-yuhu.updateConfig(config);
-}
-        sem.take(function(){yuhu.startCron()});
+res.writeHead(200, { 'Content-Type' : 'application/json'});
+
+if(config.grabber.status === "ready"){
+	config.grabber.status = "running";
+	yuhu.updateConfig(config);
+	yuhu.get();
+} else if(config.grabber.status === "complete"){
+	if(url === "/reset"){
+		config.cron.status = false;
+		yuhu.updateConfig(config);
+	}
+	sem.take(function(){yuhu.startCron()});
     }
 res.end(JSON.stringify(config));
-}).listen(port, ()=> {
-    console.log("server running");
-});
