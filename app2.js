@@ -21,7 +21,7 @@ if(url === "/reset"){
 config.cron.status = false;
 yuhu.updateConfig(config);
 }
-        sem.take(function(){yuhu.startCron()});
+//        sem.take(function(){yuhu.startCron()});
     }
 res.end(JSON.stringify(config));
 })
