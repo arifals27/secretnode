@@ -1,7 +1,6 @@
 const http = require('http');
 const todo = require("./todo");
 const config = require("./config.json");
-const semaphore = require('semaphore');
 const port = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
