@@ -6,4 +6,8 @@ const port = process.env.PORT || 3000;
 const yuhu = new todo.Manga();
 
 
-http.listen(port, ()=> console.log(`server running. Aceess your domain:{$port} to start`));
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.write('Hello World!');
+  res.end();
+}).listen(port);
